@@ -1,11 +1,16 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.3
+import QtQuick 2.7
 
 ApplicationWindow {
+    id:root
     visible: true
-    width: 800
-    height: 800
+    property int windowWidth: 800
+    property int windowHeight: 800
+    width: windowWidth
+    height: windowHeight
     title: qsTr("TA-DA")
     color: "white"
     header: Row {
@@ -32,12 +37,17 @@ ApplicationWindow {
             font.pixelSize: 20
             MouseArea {
                 anchors.fill: parent
-                onClicked: stackView.pop();
+                onClicked: {
+                  while (stackView.depth > 1) {
+                    stackView.pop();
+                  }
+                }
+
             }
         }
         Text {
             text: "Create new list"
-            font.pixelSize: 10
+            font.pixelSize: 14
             color: "red"
             font.underline: true
             anchors.verticalCenter: parent.verticalCenter
@@ -59,14 +69,14 @@ ApplicationWindow {
         id: stackView
         anchors.fill: parent
         anchors.top:row1.bottom
-        anchors.leftMargin: 10
+        anchors.margins: 10
         initialItem: "Page1.qml"
         pushEnter: Transition {
             PropertyAnimation {
                 property: "opacity"
                 from: 0
                 to:1
-                duration: 200
+                duration: 100
             }
         }
         pushExit: Transition {
@@ -74,7 +84,7 @@ ApplicationWindow {
                 property: "opacity"
                 from: 1
                 to:0
-                duration: 200
+                duration: 100
             }
         }
         popEnter: Transition {
@@ -82,7 +92,7 @@ ApplicationWindow {
                 property: "opacity"
                 from: 0
                 to:1
-                duration: 200
+                duration: 100
             }
         }
         popExit: Transition {
@@ -90,7 +100,7 @@ ApplicationWindow {
                 property: "opacity"
                 from: 1
                 to:0
-                duration: 200
+                duration: 100
             }
         }
     }

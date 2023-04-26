@@ -1,6 +1,6 @@
-import QtQuick 2.0
+import QtQuick 2.7
 import QtQuick.Controls 2.15
-
+import QtQuick.Layouts 1.3
 ///------------------dodadi nova lista formular-------
 
 Item {
@@ -34,8 +34,7 @@ Item {
             onClicked: {
                 myList.append({text: listNameInput.text})
                 listNameInput.text = ""
-              //  status.visible: true
-               // stackView.pop()
+                stackView.pop()
             }
         }
         Text {
@@ -60,15 +59,15 @@ Item {
             }
         }
     }
-    Text {
-        id:status
-        text: "New list is created"
-        color: "green"
-        font.pixelSize: 15
-        font.bold: true
-        anchors.top:row2.bottom
-        visible: false
-    }
+//    Text {
+//        id:status
+//        text: "New list is created"
+//        color: "green"
+//        font.pixelSize: 15
+//        font.bold: true
+//        anchors.top:row2.bottom
+
+//    }
 }
 
 

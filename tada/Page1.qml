@@ -1,13 +1,14 @@
-import QtQuick 2.0
+import QtQuick 2.7
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.3
 Item{
 
     ///------------------Lista so site listi kje sedi tuka ---------------///
 
     ListView {
         id: listView
-        width: parent.width
-        height: parent.height*0.5
+        width: windowWidth
+        height:windowHeight*0.5
         anchors.top: row1.bottom
         model: myList
         delegate: Item {
@@ -40,6 +41,10 @@ Item{
                 height: circle.height
                 verticalAlignment: Text.AlignVCenter
                 text: model.text
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: stackView.push("Page3.qml")
+                }
 
             }
            Button {

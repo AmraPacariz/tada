@@ -1,7 +1,9 @@
 QT += quick
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+        todolist.cpp \
+        todomodel.cpp
 
 
 resources.prefix = /$${TARGET}
@@ -19,5 +21,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 QT += sql
+
+HEADERS += \
+    todolist.h \
+    todomodel.h
 
 
