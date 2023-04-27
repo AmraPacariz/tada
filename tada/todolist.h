@@ -8,6 +8,7 @@ struct ToDoItem
 {
     bool done;
     QString description;
+    int listNumber;
 };
 
 class ToDoList : public QObject
@@ -28,7 +29,7 @@ signals:
     void postItemRemoved();
 
 public slots:
-    void appendItem();
+    void appendItem(const QString& description,int listNumber);
     void removeCompletedItems();
 
 private:

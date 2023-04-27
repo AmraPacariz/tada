@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.3
 import QtQuick 2.7
 
 ApplicationWindow {
+    property int clickedItemIndex: -1
     id:root
     visible: true
     property int windowWidth: 800
@@ -58,12 +59,7 @@ ApplicationWindow {
             }
         }
     }
-    ListModel {
-        id: myList
-        ListElement { text: "Item 1" }
-        ListElement { text: "Item 2" }
-        ListElement { text: "Item 3" }
-    }
+
 
     StackView  {
         id: stackView

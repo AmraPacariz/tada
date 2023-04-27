@@ -1,6 +1,8 @@
 QT += quick
 
 SOURCES += \
+        lists.cpp \
+        listsmodel.cpp \
         main.cpp \
         todolist.cpp \
         todomodel.cpp
@@ -23,6 +25,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 QT += sql
 
 HEADERS += \
+    lists.h \
+    listsmodel.h \
     todolist.h \
     todomodel.h
 

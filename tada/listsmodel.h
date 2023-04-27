@@ -1,25 +1,25 @@
-#ifndef TODOMODEL_H
-#define TODOMODEL_H
+#ifndef LISTSMODEL_H
+#define LISTSMODEL_H
 
 #include <QAbstractListModel>
 
-Q_MOC_INCLUDE("todolist.h")
+Q_MOC_INCLUDE("lists.h")
 
-class ToDoList;
+class Lists;
 
-class ToDoModel : public QAbstractListModel
+class ListsModel : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(ToDoList *list READ list WRITE setList)
+    Q_PROPERTY(Lists *list READ list WRITE setList)
 
 public:
-    explicit ToDoModel(QObject *parent = nullptr);
+    explicit ListsModel(QObject *parent = nullptr);
 
     enum {
-        DoneRole = Qt::UserRole,
-        DescriptionRole,
-        ListNumberRole
-    };
+            NameRole = Qt::UserRole + 1,
+            NumberRole
+        };
+
 
     // Basic functionality:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -34,11 +34,10 @@ public:
 
     virtual QHash<int, QByteArray> roleNames() const override;
 
-    ToDoList *list() const;
-    void setList(ToDoList *list);
+    Lists *list() const;
+    void setList(Lists *list);
 
 private:
-    ToDoList *mList;
+    Lists *mList;
 };
-
-#endif // TODOMODEL_H
+#endif // LISTSMODEL_H

@@ -32,9 +32,9 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             radius:50
             onClicked: {
-                myList.append({text: listNameInput.text})
+                doLists.appendItem(listNameInput.text)
                 listNameInput.text = ""
-                stackView.pop()
+                stackView.push("Page1.qml")
             }
         }
         Text {
@@ -55,19 +55,11 @@ Item {
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: stackView.pop()
+                onClicked: stackView.push("Page1.qml")
             }
         }
     }
-//    Text {
-//        id:status
-//        text: "New list is created"
-//        color: "green"
-//        font.pixelSize: 15
-//        font.bold: true
-//        anchors.top:row2.bottom
 
-//    }
 }
 
 

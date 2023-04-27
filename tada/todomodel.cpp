@@ -29,6 +29,8 @@ QVariant ToDoModel::data(const QModelIndex &index, int role) const
         return QVariant(item.done);
     case DescriptionRole:
         return QVariant(item.description);
+    case ListNumberRole:
+        return QVariant(item.listNumber);
     }
 
     return QVariant();
@@ -47,6 +49,8 @@ bool ToDoModel::setData(const QModelIndex &index, const QVariant &value, int rol
     case DescriptionRole:
         item.description = value.toString();
         break;
+         case ListNumberRole:
+        item.listNumber = value.toInt();
     }
 
     if (mList->setItemAt(index.row(), item)) {
@@ -69,6 +73,7 @@ QHash<int, QByteArray> ToDoModel::roleNames() const
     QHash<int, QByteArray> names;
     names[DoneRole] = "done";
     names[DescriptionRole] = "description";
+    names[ListNumberRole] = "listNumber";
     return names;
 }
 
@@ -88,7 +93,7 @@ void ToDoModel::setList(ToDoList *list)
 
     if (mList) {
         connect(mList, &ToDoList::preItemAppended, this, [=]() {
-            const int index = mList->items().size();
+             m const int index = mList->items().size();
             beginInsertRows(QModelIndex(), index, index);
         });
         connect(mList, &ToDoList::postItemAppended, this, [=]() {

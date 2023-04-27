@@ -11,6 +11,7 @@ Item {
         Layout.fillWidth: true
 
         ListView {
+            id:listViewToDo
             implicitWidth: 250
             implicitHeight: 250
             anchors.fill: parent
@@ -21,32 +22,21 @@ Item {
             }
 
             delegate: RowLayout {
-                width: parent.width
+               width:listViewToDo.width
 
                 CheckBox {
                     checked: model.done
                     onClicked: model.done = checked
                 }
-                TextField {
+                Text {
                     text: model.description
-                    onEditingFinished: model.description = text
+                    // onEditingFinished: model.description = text
                     Layout.fillWidth: true
                 }
             }
 
         }
+        RowLayout{AddItem{}}
+  }
 
-        RowLayout {
-            Button {
-                text: qsTr("Add new item")
-                onClicked: toDoList.appendItem()
-                Layout.fillWidth: true
-            }
-            Button {
-                text: qsTr("Remove completed")
-                onClicked: toDoList.removeCompletedItems()
-                Layout.fillWidth: true
-            }
-        }
-    }
 }
