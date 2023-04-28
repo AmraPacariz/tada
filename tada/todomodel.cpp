@@ -10,8 +10,7 @@ ToDoModel::ToDoModel(QObject *parent)
 
 int ToDoModel::rowCount(const QModelIndex &parent) const
 {
-    // For list models only the root node (an invalid parent) should return the list's size. For all
-    // other (valid) parents, rowCount() should return 0 so that it does not become a tree model.
+
     if (parent.isValid() || !mList)
         return 0;
 
@@ -93,7 +92,7 @@ void ToDoModel::setList(ToDoList *list)
 
     if (mList) {
         connect(mList, &ToDoList::preItemAppended, this, [=]() {
-             m const int index = mList->items().size();
+             const int index = mList->items().size();
             beginInsertRows(QModelIndex(), index, index);
         });
         connect(mList, &ToDoList::postItemAppended, this, [=]() {

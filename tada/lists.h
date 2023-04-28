@@ -20,6 +20,8 @@ public:
     QVector<ListsItem> items() const;
 
     bool setItemAt(int index, const ListsItem &item);
+    QString getName(int index) const;
+    int getNumber(int index) const;
 
 signals:
     void preItemAppended();
@@ -27,10 +29,16 @@ signals:
 
     void preItemRemoved(int index);
     void postItemRemoved();
-
+    void preNumberIncremented(int index);
+    void postNumberIncremented(int index);
+    void preNumberDecremented(int index);
+    void postNumberDecremented(int index);
 public slots:
     void appendItem(const QString& name);
-  //  void removeCompletedItems();
+
+    void incrementNumberSlot(int index);
+    void decrementNumberSlot(int index);
+
 
 private:
     QVector<ListsItem> mItems;

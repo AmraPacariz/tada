@@ -3,9 +3,11 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 import QtQuick 2.7
-
+import QtQuick.Controls.Material 2.0
+import Lists 1.0
 ApplicationWindow {
     property int clickedItemIndex: -1
+    property string clickedItemName: ""
     id:root
     visible: true
     property int windowWidth: 800
@@ -19,7 +21,7 @@ ApplicationWindow {
         spacing: 10
         width: parent.width
         height: 50
-        anchors.leftMargin: 5
+
 
 
         Image {
@@ -66,6 +68,7 @@ ApplicationWindow {
         anchors.fill: parent
         anchors.top:row1.bottom
         anchors.margins: 10
+        anchors.topMargin: 30
         initialItem: "Page1.qml"
         pushEnter: Transition {
             PropertyAnimation {
@@ -100,4 +103,5 @@ ApplicationWindow {
             }
         }
     }
+
 }

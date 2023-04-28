@@ -2,6 +2,7 @@ import QtQuick 2.7
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 import Lists 1.0
+import QtQuick.Controls.Material 2.0
 Item{
 
     ///------------------Lista so site listi kje sedi tuka ---------------///
@@ -18,44 +19,57 @@ Item{
         delegate: Item {
             id:itemList
             height: 30
-            width: parent.width
+            width:listView.width
 
-            Rectangle {
-                width: parent.width-20
-                height: 1
-                color: "lightgrey"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    clickedItemIndex = index;
+                    stackView.push("Page3.qml")
+                    clickedItemName=imeLista.text
 
+                }
             }
             Rectangle{
-                id:circle
-                color: "gray"
-                width: model.number
-                height: model.number
-                radius: width*0.5
+                id:rec
+                width: 3
+                height: parent.height
                 anchors.verticalCenter: itemList.verticalCenter
+                Rectangle{
+                    id:circle
+                    color: "gray"
+                    width: model.number+3
+                    height: model.number+3
+                    radius: width*0.5
+                    anchors.verticalCenter: parent.verticalCenter
+
+                }
             }
+
+
             Text {
                 id:imeLista
                 font.bold: true
                 font.underline: true
                 color: "darkblue"
-                x: circle.width + 20
+                x: rec.width + 20
                 y: 5
-                width: parent.width - circle.width - 20
-                height: circle.height
+                width: rec.width+100
+                height: rec.height
                 verticalAlignment: Text.AlignVCenter
                 anchors.verticalCenter: itemList.verticalCenter
                 text: model.name
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                          clickedItemIndex = index;
-                       console.log("Clicked element index:" + clickedItemIndex);
-                        stackView.push("Page3.qml")
-
-                    }
-                }
+            }
+            Text
+            {
+                id:numberofitems
+                x: rec.width + imeLista.width
+                y: 5
+                font.bold: true
+                font.pixelSize: 10
+                color: "grey"
+                text: " - "+ model.number
+                anchors.verticalCenter: itemList.verticalCenter
 
             }
 

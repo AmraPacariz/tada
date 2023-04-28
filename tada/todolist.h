@@ -30,10 +30,12 @@ signals:
 
 public slots:
     void appendItem(const QString& description,int listNumber);
-    void removeCompletedItems();
+    int  removeCompletedItems();
+    void removeItem(int index);
 
 private:
     QVector<ToDoItem> mItems;
+
 };
 
 #endif // TODOLIST_H

@@ -2,6 +2,9 @@ import QtQuick 2.7
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 import ToDo 1.0
+import Lists 1.0
+
+import QtQuick.Controls.Material 2.0
 Item {
 
     Text {
@@ -13,7 +16,12 @@ Item {
         color: "darkblue"
         MouseArea {
             anchors.fill: parent
-            onClicked: toDoList.removeCompletedItems()
+            onClicked: {
+                var removed=toDoList.removeCompletedItems()
+                console.log(removed)
+                for(var i=0;i<removed;i++)
+                {doLists.decrementNumberSlot(clickedItemIndex)}
+            }
         }
 
         Layout.fillWidth: true
@@ -47,7 +55,7 @@ Item {
             onClicked: {
                 toDoList.appendItem(listItemNameInput.text, clickedItemIndex)
                 listItemNameInput.text = ""
-
+               doLists.incrementNumberSlot(clickedItemIndex)
             }
         }
 
